@@ -149,7 +149,7 @@ def timeWindow():
             slopeList[n] = slopeList[n] / relevantBuildingsList[n]
 
 
-    slopeList
+    graphSlopes(slopeList)
     return slopeList
 
 
