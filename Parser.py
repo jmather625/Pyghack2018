@@ -5,11 +5,11 @@ import statsmodels.api as sm
 from scipy import stats
 import matplotlib.pyplot as plt
 
-def groupBuildings():
+def groupBuildings(fileName):
 
     allBuildingsList = []
     # newBuilding = []
-    with open ('dataFile.json', 'r') as f:
+    with open (fileName, 'r') as f:
         dict = json.load(f)
 
 
@@ -57,8 +57,8 @@ def groupBuildings():
     return allBuildingsList
 
 
-def filter():
-    buildingsList = groupBuildings()
+def filter(fileName):
+    buildingsList = groupBuildings(fileName)
 
     count = 0
     # print(buildingsList)
@@ -100,8 +100,8 @@ def filter():
     return buildingsList
 
 
-def timeWindow():
-    buildingsList = filter()
+def timeWindow(fileName):
+    buildingsList = filter(fileName)
     #23 years, 31536000 seconds per year
     maxTime = 725328000
     timeIncrement = 31536000
@@ -181,4 +181,9 @@ def graphSlopes(arrSlopes):
 # graphSlopes([44.91, 58.09, 78.07, 107.7, 138.5, 170.6])
 
 # print(filter())
-print(timeWindow())
+
+
+
+if __name__== "__main__":
+    timeWindow("dataFile.json")
+    # timeWindow("key3dataFilev2.json")
