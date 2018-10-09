@@ -43,7 +43,7 @@ def groupBuildings(fileName):
                 allBuildingsList.append(dictToAppend)
 
 
-            if (dict[i]['buildingName'] == dict[i + 1 ]['buildingName']):
+            if (dict[i]['structureName'] == dict[i + 1 ]['structureName']):
                 currentWeights.append(int(dict[i]["linearlyWeightedScale"]))
                 currentTimes.append(int(dict[i]["timeElapsed"]))
             else:
@@ -89,8 +89,9 @@ def filter(fileName):
             if len(buildingsList[i]["weights"]) == j + 1:
                 break
 
-
-            if buildingsList[i]["weights"][j] > buildingsList[i]["weights"][j + 1]:
+            isNextWeightSmaller = (buildingsList[i]["weights"][j] - buildingsList[i]["weights"][j + 1]) > 5
+            isNextWeightNotTooMuchSmaller = (buildingsList[i]["weights"][j] - buildingsList[i]["weights"][j + 1]) < 50
+            if (not isNextWeightSmaller) or (not isNextWeightNotTooMuchSmaller):
                 # print(buildingsList[i]["weights"][j], buildingsList[i]["weights"][j+1])
                 buildingsList[i]["weights"].pop(j+1)
                 buildingsList[i]["times"].pop(j+1)
