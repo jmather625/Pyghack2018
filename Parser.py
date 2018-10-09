@@ -90,7 +90,7 @@ def filter(fileName):
                 break
 
             isNextWeightSmaller = (buildingsList[i]["weights"][j] - buildingsList[i]["weights"][j + 1]) > 5
-            isNextWeightNotTooMuchSmaller = (buildingsList[i]["weights"][j] - buildingsList[i]["weights"][j + 1]) < 50
+            isNextWeightNotTooMuchSmaller = (buildingsList[i]["weights"][j] - buildingsList[i]["weights"][j + 1]) < 30
             if (not isNextWeightSmaller) or (not isNextWeightNotTooMuchSmaller):
                 # print(buildingsList[i]["weights"][j], buildingsList[i]["weights"][j+1])
                 buildingsList[i]["weights"].pop(j+1)
@@ -117,7 +117,7 @@ def timeWindow(fileName):
         for j in range(0, maxTime, timeIncrement):
             for k in range(len(buildingsList[i]["times"]) - 1):
                 subArrayIndices = []
-                while (j <= buildingsList[i]["times"][k] and buildingsList[i]["times"][k] <= j + timeIncrement):
+                while (j <= buildingsList[i]["times"][k] and buildingsList[i]["times"][k] <= j + 2*timeIncrement):
                     subArrayIndices.append(k)
                     k += 1
                     if k == len(buildingsList[i]["times"])-1:
@@ -184,7 +184,9 @@ def graphSlopes(arrSlopes):
 # print(filter())
 
 
-
 if __name__== "__main__":
-    timeWindow("key3dataFilev2.json")
+    timeWindow("dataFile1.json")
+    timeWindow("dataFile2.json")
+    timeWindow("dataFile3.json")
+    timeWindow("dataFile4.json")
     # timeWindow("key3dataFilev2.json")
